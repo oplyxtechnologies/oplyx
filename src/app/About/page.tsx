@@ -8,7 +8,7 @@ import FAQ from "@/components/FAQ";
 
 const page = () => {
   return (
-    <div>
+    <div className="overflow-hidden p-2">
       <AboutHero />
       <AboutOplyx />
       <Testimonials />

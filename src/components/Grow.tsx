@@ -5,17 +5,18 @@ import { Headset } from "lucide-react";
 
 const Grow: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto bg-[url('/map.svg')] h-[70vh] flex items-center justify-center">
-      <div className="text-center mt-40 max-w-3xl">
-        <h1 className="text-6xl font-bold tracking-tighter">
-          We&apos;re global and growing
+    <div className="max-w-7xl mx-auto bg-[url('/map.svg')] bg-cover h-[70vh] flex items-center justify-center">
+      <div className="text-center p-4 mt-96 md:mt-10 max-w-3xl">
+        <h1 className="text-6xl mx-auto  font-bold tracking-tighter">
+          We&apos;re global
+          <br /> and growing
         </h1>
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4 px-6 text-gray-600">
           Mizzle customer support is available free of charge. Connection
           charges can vary when calling from outside the area, abroad, or from a
           mobile phone.
         </p>
-        <div className="md:flex justify-center mt-10 gap-4 p-4 inline-block space-y-4 md:space-y-0">
+        <div className="md:flex justify-center  mt-10 gap-4 p-4 inline-block space-y-4 md:space-y-0">
           <div className="text-start border-2 p-8 rounded-lg bg-white w-96 ">
             <Image src="/logo.svg" alt="logo" width={100} height={24} />
             <h1 className="text-2xl font-semibold mt-2">United States</h1>

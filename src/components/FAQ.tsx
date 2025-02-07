@@ -36,7 +36,7 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto mt-40 my-16 px-6">
+    <div className="max-w-7xl mx-auto mt-96 md:mt-10 my-16 px-6">
       <div className="flex flex-col md:flex-row gap-10 items-center justify-between">
         {/* Left Section */}
         <div className="w-full md:w-1/2">

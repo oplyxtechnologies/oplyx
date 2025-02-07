@@ -9,7 +9,7 @@ import Subscribe from "@/components/Subscribe";
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-hidden p-2">
       <Hero />
 
       <div className="max-w-7xl mx-auto -mt-5">
