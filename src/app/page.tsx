@@ -1,15 +1,18 @@
 import About from "@/components/About/About";
 import Hero from "../components/Hero/hero";
-
+import Grow from "@/components/Grow";
+import FAQ from "@/components/FAQ";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
+import Service from "@/components/Service/Service";
+import Subscribe from "@/components/Subscribe";
 
 export default function Home() {
   return (
     <div>
       <Hero />
 
-      <div className="max-w-7xl mx-auto -mt-10">
+      <div className="max-w-7xl mx-auto -mt-5">
         <Marquee
           pauseOnHover
           className="
@@ -30,6 +33,11 @@ export default function Home() {
       </div>
 
       <About />
+
+      <Service />
+      <Grow />
+      <FAQ />
+      <Subscribe />
     </div>
   );
 }

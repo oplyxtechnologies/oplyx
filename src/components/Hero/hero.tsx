@@ -8,7 +8,7 @@ import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-white flex items-center justify-center bg-[url('/pb.jpg')] bg-contain  bg-center bg-no-repeat h-[90vh]">
+    <section className="bg-white flex items-center justify-center bg-[url('/pb.jpg')] bg-contain  bg-center bg-no-repeat h-[80vh]">
       <div className="max-w-screen-xl px-4 py-8 mx-auto flex flex-col lg:flex-row items-center lg:text-left">
         <div className="lg:w-1/2 text-center px-4 lg:text-left">
           <div className="flex items-center justify-center lg:justify-start font-bold -mb-2 text-primary">
