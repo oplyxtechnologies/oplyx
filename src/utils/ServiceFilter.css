@@ -1,0 +1,67 @@
+/* Container */
+.service-container {
+  max-width: 1280px;
+  margin: 40px auto;
+  padding: 20px;
+
+  border-radius: 10px;
+}
+
+/* Flex Container */
+.service-flex {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.service-sidebar {
+  width: 35%;
+  margin-right: 10px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.service-tab {
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: left;
+  color: #000000;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+
+  transition: background-color 0.2s, color 0.3s;
+}
+
+.service-tab:hover {
+  background-color: #e6e6e6;
+}
+
+.service-tab.active {
+  background-color: #e6e6e6;
+  color: #000000;
+}
+
+/* Content Area */
+.service-content {
+  width: 65%;
+  padding: 30px;
+  background-color: #e6e6e6;
+  transition: background-color 0.3s;
+}
+
+.service-content.active {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+}
+
+.service-text {
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.6;
+}

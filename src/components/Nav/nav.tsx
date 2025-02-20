@@ -14,9 +14,8 @@ const Nav: React.FC = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/About" },
-    { name: "Services", href: "/services" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Contact", href: "/contact" },
+    { name: "Services", href: "/Service" },
+    { name: "Contact", href: "/Contact" },
   ];
 
   return (

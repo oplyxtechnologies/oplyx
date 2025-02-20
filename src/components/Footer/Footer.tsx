@@ -12,8 +12,8 @@ import { Button } from "../ui/button";
 // Define the links object
 const links = {
   home: "/",
-  about: "/about",
-  services: "/services",
+  about: "/About",
+  services: "/Service",
   courses: "/courses",
   contact: "/contact",
   career: "/career",

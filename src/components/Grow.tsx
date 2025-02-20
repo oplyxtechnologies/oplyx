@@ -14,7 +14,7 @@ const Grow: React.FC = () => {
         <p className="mt-4 px-6 text-gray-600">
           Mizzle customer support is available free of charge. Connection
           charges can vary when calling from outside the area, abroad, or from a
-          mobile phone.
+          mobile phone.-+
         </p>
         <div className="md:flex justify-center  mt-10 gap-4 p-4 inline-block space-y-4 md:space-y-0">
           <div className="text-start border-2 p-8 rounded-lg bg-white w-96 ">
