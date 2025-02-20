@@ -49,27 +49,28 @@ const ContactForm = () => {
               Contact Us
             </h2>
             <p className="text-gray-600 mt-2">
-              Proin volutpat consequat porttitor cras nullam gravida at. Orci
-              molestie a eu arcu.
+              Oplyx Technologies empowers businesses with innovative digital
+              solutions, ensuring growth, efficiency, and seamless user
+              experiences.
             </p>
             <div className="mt-4 space-y-5">
               <p className="flex items-center text-gray-700">
                 <span className="mr-5">
                   <House />
                 </span>{" "}
-                545 Mavis Island, Chicago, IL 99191
+                Basundhara, Kathmandu
               </p>
               <p className="flex items-center text-gray-700">
                 <span className="mr-5">
                   <Phone />
                 </span>{" "}
-                +1 (555) 234-5678
+                +977 9749442103
               </p>
               <p className="flex items-center text-gray-700">
                 <span className="mr-5">
                   <Send />
                 </span>{" "}
-                hello@example.com
+                oplyxtechnologies@gmail.com
               </p>
             </div>
           </div>
