@@ -59,14 +59,7 @@ export function SiteFooter() {
                 Services
               </Link>
             </li>
-            <li>
-              <Link
-                href={links.courses}
-                className="font-medium text-secondary-foreground/80 transition hover:text-primary"
-              >
-                Courses
-              </Link>
-            </li>
+
             <li>
               <Link
                 href={links.contact}
