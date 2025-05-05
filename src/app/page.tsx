@@ -12,7 +12,7 @@ export default function Home() {
     <div className="overflow-hidden p-2">
       <Hero />
 
-      <div className="max-w-7xl mx-auto -mt-5">
+      <div className="max-w-7xl mx-auto mt-5">
         <Marquee
           pauseOnHover
           className="
