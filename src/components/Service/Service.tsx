@@ -71,7 +71,7 @@ const Service: React.FC = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className=" mx-auto transition-all duration-200 cursor-pointer  shadow-none scale-95 hover:scale-100"
+            className=" mx-auto transition-all duration-200 cursor-pointer  shadow-none "
           >
             <ServiceCard
               title={service.title}

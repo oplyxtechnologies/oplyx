@@ -12,11 +12,11 @@ export default function ServiceCard({
   Icon,
 }: ServiceCardProps) {
   return (
-    <div className="text-primary max-w-sm p-6 border border-primary  border-opacity-15 rounded-lg shadow-lg">
+    <div className="text-primary max-w-sm p-6 border border-[#858585]  border-opacity-15 rounded-lg ">
       <div className="flex flex-col p-4 m-auto  ">
         {/* Icon */}
         <div className="py-4 bg-white   p-3">
-          <Icon size={40} className="text-primary" />
+          <Icon size={40} className="text-[#858585]" />
         </div>
 
         {/* Title */}
