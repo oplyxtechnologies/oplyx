@@ -1,18 +1,14 @@
 import ContactForm from "@/components/Contact/ContactForm";
-
 import React from "react";
 
-const page = () => {
+const ContactPage = () => {
   return (
-    <div>
-      <div className="flex max-w-7xl mx-auto ">
-        <div>
-          <h1 className="">Contact us</h1>
-        </div>
+    <section className="min-h-screen px-4 py-16 md:px-8 bg-white">
+      <div>
         <ContactForm />
       </div>
-    </div>
+    </section>
   );
 };
 
-export default page;
+export default ContactPage;

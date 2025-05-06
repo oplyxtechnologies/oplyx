@@ -1,113 +1,187 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import Image from "next/image";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import ChooseService from "../Emails/ChooseService";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
-// Define the schema using Zod
-const ContactFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(7, "Phone number is required"),
-  zipcode: z.string().optional(),
-  message: z.string().min(1, "Message is required"),
-});
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
 
-type ContactFormType = z.infer<typeof ContactFormSchema>;
+export default function ContactPage() {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [agreed, setAgreed] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-export default function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ContactFormType>({ resolver: zodResolver(ContactFormSchema) });
+  const handleChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "" }));
+  };
 
-  const [successMessage, setSuccessMessage] = useState<string>("");
+  const validate = () => {
+    const newErrors: { [key: string]: string } = {};
+    const emailRegex = /^[^\s@,]+@[^\s@,]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^\+?\d{7,15}$/;
 
-  const onSubmit = async (data: ContactFormType) => {
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+    if (!formData.name.trim()) newErrors.name = "Name is required.";
+    if (!emailRegex.test(formData.email))
+      newErrors.email = "Invalid email address.";
+    if (!phoneRegex.test(formData.phone))
+      newErrors.phone = "Invalid phone number.";
+    if (formData.message.trim().length < 10 || !/\s/.test(formData.message)) {
+      newErrors.message = "Message should be meaningful and structured.";
+    }
+    if (!agreed) newErrors.terms = "You must agree to the terms.";
 
-      if (response.ok) {
-        setSuccessMessage("Your message has been sent! Thank you!");
-        reset();
-      } else {
-        setSuccessMessage("Failed to send message. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setSuccessMessage("An error has occurred. Please try again later.");
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log("Form submitted:", formData);
+      // Submit logic here
     }
   };
 
   return (
-    <div className=" mx-auto ">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <label className="block">
-          <span className="text-gray-700">Name</span>
-          <input
-            {...register("name")}
-            className="w-full mt-1 p-2 border rounded-md"
-            placeholder="Name"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-sm">{errors.name.message}</p>
+    <section className="min-h-screen px-4 py-16 md:px-10 bg-white">
+      <div className="text-center max-w-xl mx-auto mb-12">
+        <span className="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium text-gray-600">
+          Connecting People
+        </span>
+        <h1 className="text-4xl font-bold text-black mt-4">Contact us</h1>
+        <p className="text-gray-500 text-sm sm:text-base mt-2">
+          We&apos;re here to help! Share your thoughts or questions with us, and
+          we&apos;ll respond promptly.
+        </p>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+        <form onSubmit={handleSubmit} className="space-y-6 w-full">
+          {/* Name */}
+          <div>
+            <label className="text-xs font-semibold text-gray-500 uppercase mb-1 block">
+              Name
+            </label>
+            <Input
+              placeholder="Jonnie Dawson"
+              value={formData.name}
+              onChange={(e) => handleChange("name", e.target.value)}
+              className="h-11"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
+          </div>
+
+          {/* Email and Phone */}
+          <div className="flex flex-col sm:flex-row gap-5">
+            <div className="w-full">
+              <label className="text-xs font-semibold text-gray-500 uppercase mb-1 block">
+                Email
+              </label>
+              <Input
+                placeholder="hello@oplyx.co"
+                value={formData.email}
+                onChange={(e) => handleChange("email", e.target.value)}
+                className="h-11"
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+
+            <div className="w-full">
+              <label className="text-xs font-semibold text-gray-500 uppercase mb-1 block">
+                Phone
+              </label>
+              <PhoneInput
+                international
+                defaultCountry="US"
+                value={formData.phone}
+                onChange={(value) => handleChange("phone", value || "")}
+                className="text-sm rounded-md border border-gray-300 px-3 h-11 w-full"
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Message */}
+          <div>
+            <label className="text-xs font-semibold text-gray-500 uppercase mb-1 block">
+              Message
+            </label>
+            <Textarea
+              placeholder="I'd love to learn more about your services"
+              value={formData.message}
+              onChange={(e) => handleChange("message", e.target.value)}
+              rows={5}
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            )}
+          </div>
+
+          {/* Agreement */}
+          <div className="flex items-start gap-3">
+            <Checkbox
+              id="terms"
+              checked={agreed}
+              onCheckedChange={(v) => {
+                setAgreed(!!v);
+                if (v) setErrors((prev) => ({ ...prev, terms: "" }));
+              }}
+            />
+            <label htmlFor="terms" className="text-sm text-gray-700">
+              I agree to the{" "}
+              <span className="font-semibold">Terms and Conditions</span>
+            </label>
+          </div>
+          {errors.terms && (
+            <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
           )}
-        </label>
 
-        <label className="block">
-          <span className="text-gray-700">Email</span>
-          <input
-            {...register("email")}
-            className="w-full mt-1 p-2 border rounded-md"
-            placeholder="Email"
+          {/* Service Selection */}
+          <ChooseService />
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="bg-[#464646] hover:bg-[#7e7e7e] text-white w-full sm:w-fit"
+          >
+            Send now
+          </Button>
+        </form>
+
+        {/* Image Side */}
+        <div className="w-full h-[280px] sm:h-[400px] md:h-full">
+          <Image
+            src="/contact-desk.jpg"
+            alt="Office setup"
+            width={800}
+            height={800}
+            className="rounded-xl w-full h-full object-cover"
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </label>
-
-        <label className="block">
-          <span className="text-gray-700">Phone</span>
-          <input
-            {...register("phone")}
-            className="w-full mt-1 p-2 border rounded-md"
-            placeholder="Phone"
-          />
-          {errors.phone && (
-            <p className="text-red-500 text-sm">{errors.phone.message}</p>
-          )}
-        </label>
-
-        <label className="block">
-          <span className="text-gray-700">Message</span>
-          <textarea
-            {...register("message")}
-            className="w-full mt-1 p-2 border rounded-md"
-            placeholder="Message"
-          />
-          {errors.message && (
-            <p className="text-red-500 text-sm">{errors.message.message}</p>
-          )}
-        </label>
-
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-          Request a Callback
-        </button>
-
-        {successMessage && (
-          <p className="text-green-500 text-sm text-center">{successMessage}</p>
-        )}
-      </form>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 }

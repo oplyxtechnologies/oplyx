@@ -70,3 +70,9 @@ body {
   width: 100px;
   height: 40px;
 }
+
+.react-phone-input-custom .PhoneInputCountryIcon {
+  width: 20px !important;
+  height: 15px !important;
+  object-fit: contain;
+}
