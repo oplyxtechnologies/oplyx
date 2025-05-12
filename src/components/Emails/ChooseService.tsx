@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import clsx from "clsx";
 
 const services = [
@@ -13,15 +12,21 @@ const services = [
   "AWS",
 ];
 
-export default function ChooseService() {
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+interface ChooseServiceProps {
+  selected: string[];
+  setSelected: (services: string[]) => void;
+}
 
+export default function ChooseService({
+  selected,
+  setSelected,
+}: ChooseServiceProps) {
   const toggleService = (service: string) => {
-    setSelectedServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
+    if (selected.includes(service)) {
+      setSelected(selected.filter((s) => s !== service));
+    } else {
+      setSelected([...selected, service]);
+    }
   };
 
   return (
@@ -38,7 +43,7 @@ export default function ChooseService() {
         {/* Service Buttons */}
         <div className="flex flex-wrap gap-4">
           {services.map((service) => {
-            const isSelected = selectedServices.includes(service);
+            const isSelected = selected.includes(service);
             return (
               <button
                 key={service}

@@ -1,0 +1,10 @@
+POST http://localhost:3000/enquiry/create
+Content-Type: application/json
+
+{
+    "name": "Rajan Sharma",
+    "email": "nexorith1@gmail.com",
+    "phoneNumber": "9761637657",
+    "message": "This is test",
+    "service":["Devops", "MERN"]
+}

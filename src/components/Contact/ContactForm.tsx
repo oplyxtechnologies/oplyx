@@ -1,14 +1,18 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import ChooseService from "../Emails/ChooseService";
+import { baseURL } from "@/config/config";
+import axios from "axios";
+import Image from "next/image";
+import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { ToastContainer, toast } from "react-toastify";
+import ChooseService from "../Emails/ChooseService";
+import Loader from "../ui/Loader";
 
 interface FormData {
   name: string;
@@ -24,9 +28,11 @@ export default function ContactPage() {
     phone: "",
     message: "",
   });
-  const [agreed, setAgreed] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
+  const [agreed, setAgreed] = useState(false);
+  const [loader, setLoader] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const handleChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
@@ -51,16 +57,46 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted:", formData);
-      // Submit logic here
+      try {
+        setLoader(true);
+        await axios({
+          method: "POST",
+          url: `${baseURL}/enquiry/create`,
+          data: {
+            name: formData.name,
+            email: formData.email,
+            phoneNumber: formData.phone,
+            message: formData.message,
+            service: selectedServices,
+          },
+        });
+        setLoader(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setSelectedServices([]);
+        toast.success("Contact Form Submitted Successfully");
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          toast.error(error.response?.data.message);
+        } else {
+          toast.error("An unexpected error occurred.");
+        }
+        setLoader(false);
+        console.error(error);
+      }
     }
   };
 
   return (
     <section className="min-h-screen px-4 py-16 md:px-10 bg-white">
+      <ToastContainer />
       <div className="text-center max-w-xl mx-auto mb-12">
         <span className="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium text-gray-600">
           Connecting People
@@ -158,17 +194,32 @@ export default function ContactPage() {
           {errors.terms && (
             <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
           )}
-
-          {/* Service Selection */}
-          <ChooseService />
-
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            className="bg-[#464646] hover:bg-[#7e7e7e] text-white w-full sm:w-fit"
-          >
-            Send now
-          </Button>
+          <div>
+            <ChooseService
+              selected={selectedServices}
+              setSelected={setSelectedServices}
+            />
+            <div className="mt-4 text-sm text-gray-600">
+              Selected: {selectedServices.join(", ") || "None"}
+            </div>
+          </div>
+          {loader ? (
+            <Button
+              type="submit"
+              className="bg-[#464646] hover:bg-[#7e7e7e] text-white  w-[100px]"
+              disabled
+              style={{ cursor: "not-allowed" }}
+            >
+              <Loader />
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="bg-[#464646] hover:bg-[#7e7e7e] text-white w-[100px]"
+            >
+              Send now
+            </Button>
+          )}
         </form>
 
         {/* Image Side */}

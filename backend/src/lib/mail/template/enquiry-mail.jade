@@ -1,0 +1,97 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    title Thank You for Getting in Touch
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css")
+    style.
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafc;
+        padding: 40px;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #F1F7ED;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .logo {
+        display: block;
+        max-width: 100px;
+      }
+      h2 {
+        color: #000;
+        margin-bottom: 10px;
+      }
+      .slogan {
+          text-align: center;
+         
+          color: #555555;  
+      }
+      p {
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+      }
+
+      .social-icons a {
+        color: #777;
+        font-size: 2rem;
+        transition: color 0.3s ease;
+      }
+      .social-icons a:hover {
+        color: #2c3e50;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        text-align: center;
+        color: #777;
+      }
+
+  body
+    .container
+      img.logo(src='https://res.cloudinary.com/dtgvvhwbu/image/upload/v1746547427/uploads/1746547423183-logo.png.png', alt='Company Logo')
+      br
+
+      h2 Hello #{name}!
+      p
+        | Thank you for reaching out to 
+        strong Oplyx
+        | ! We’re thrilled to have received your details. Our team will review your submission and get back to you shortly.
+      p
+        | If you have any urgent questions, feel free to contact us at 
+        span(style="color: #006ba6;") connectoplyx@gmail.com
+        | .
+
+      .footer
+        | 📍 Bashundhara, Kathmandu, 44600
+        br
+        br
+        | © #{new Date().getFullYear()} Oplyx Tech. All rights reserved.  
+        br
+        br
+      table(align="center", cellpadding="10", cellspacing="0", role="presentation")
+        tr
+          td
+            a(href="https://www.facebook.com/profile.php?id=61572351668846", target="_blank")
+              img(src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png", alt="Facebook", width="32", height="32")
+          td
+            a(href="https://twitter.com", target="_blank")
+              img(src="https://img.icons8.com/ios-filled/50/000000/twitter.png", alt="Twitter", width="32", height="32")
+          td
+            a(href="https://www.instagram.com/oplyxtech/", target="_blank")
+              img(src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png", alt="Instagram", width="32", height="32")
+          td
+            a(href="https://linkedin.com", target="_blank")
+              img(src="https://img.icons8.com/ios-filled/50/000000/linkedin.png", alt="LinkedIn", width="32", height="32")
+
