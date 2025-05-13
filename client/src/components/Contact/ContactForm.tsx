@@ -13,6 +13,7 @@ import "react-phone-number-input/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import ChooseService from "../Emails/ChooseService";
 import Loader from "../ui/Loader";
+import Swal from "sweetalert2";
 
 interface FormData {
   name: string;
@@ -81,7 +82,12 @@ export default function ContactPage() {
           message: "",
         });
         setSelectedServices([]);
-        toast.success("Contact Form Submitted Successfully");
+        Swal.fire({
+          title: "Contact form submitted successfully!",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#464646",
+        });
       } catch (error) {
         if (axios.isAxiosError(error)) {
           toast.error(error.response?.data.message);
