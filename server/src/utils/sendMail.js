@@ -2,7 +2,7 @@ const { SMTP_EMAIL, SMTP_PASSWORD } = require("../config/env");
 const nodemailer = require("nodemailer");
 
 const transporterInfo = {
-  host: "smtp.gmail.com",
+  host: "smtp.hostinger.com",
   port: 587,
   secure: false,
   auth: {
@@ -14,8 +14,10 @@ const transporterInfo = {
 async function sendMail(mailInfo) {
   try {
     const transporter = nodemailer.createTransport(transporterInfo);
-    return await transporter.sendMail(mailInfo);
+    const info = await transporter.sendMail(mailInfo);
+    return info;
   } catch (error) {
+    console.error("Error sending email:", error);
     throw {
       status: 400,
       message: error.message,

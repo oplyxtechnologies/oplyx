@@ -12,9 +12,10 @@ async function contactFormMail({ receiver, name }) {
   );
   try {
     await sendMail({
-      from: '"oplyx.tech" <connectoplyx@gmail.com>',
+      from: '"oplyx.tech"<connect@oplyx.tech>',
       to: receiver,
       subject: "Thank you for getting in touch with Oplyx!",
+      text: "Thank you for contacting Oplyx. We will get back to you shortly.",
       html: htmlContent,
     });
   } catch (error) {}
@@ -39,7 +40,7 @@ async function notifyAdminEnquiryMail({
   );
   try {
     await sendMail({
-      from: '"Contact Form" <connectoplyx@gmail.com>',
+      from: '"Contact Form" <connect@oplyx.tech>',
       to: PANDA_MAIL,
       subject: "New enquiry alert !",
       html: htmlContent,
