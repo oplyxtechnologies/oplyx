@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/enquiry/create",
-      "destination": "https://oplyx-production.up.railway.app/api/enquiry/create"
+      "source": "/api/:path*",
+      "destination": "https://oplyx-production.up.railway.app/api/:path*"
     }
   ]
 }
