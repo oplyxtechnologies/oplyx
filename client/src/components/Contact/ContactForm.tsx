@@ -65,7 +65,7 @@ export default function ContactPage() {
         setLoader(true);
         await axios({
           method: "POST",
-          url: `${baseURL}/enquiry/create`,
+          url: "api/enquiry/create",
           data: {
             name: formData.name,
             email: formData.email,
