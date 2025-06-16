@@ -4,15 +4,14 @@ html
     meta(charset="UTF-8")
     title Thank You for Getting in Touch
 
+    // This won't work in Gmail, but okay to keep for future support
     link(rel="preconnect", href="https://fonts.googleapis.com")
     link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sora:wght@700&display=swap", rel="stylesheet")
 
-    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css")
-
     style.
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', Arial, sans-serif;
         background-color: #f9fafc;
         padding: 40px;
         color: #99A1A6;
@@ -30,7 +29,7 @@ html
         max-width: 100px;
       }
       h2 {
-        font-family: 'Sora', sans-serif;
+        font-family: 'Sora', 'Segoe UI', Tahoma, sans-serif;  
         font-weight: 700;
         color: #fff;
         margin-bottom: 10px;
@@ -38,20 +37,7 @@ html
       p {
         line-height: 1.6;
         font-size: 1rem;
-      }
-      .social-icons {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-        justify-content: center;
-      }
-      .social-icons a {
-        color: #fff;
-        font-size: 2rem;
-        transition: color 0.3s ease;
-      }
-      .social-icons a:hover {
-        color: #81FBE9;
+        color: #99A1A6;
       }
       .footer {
         margin-top: 30px;
@@ -65,11 +51,13 @@ html
       img.logo(src='https://res.cloudinary.com/dtgvvhwbu/image/upload/v1750094858/uploads/1750094857811-oplyxlogo2.png.png', alt='Company Logo')
       br
 
-      h2 Hello Aaryan!
+      h2 Hello #{name}!
+
       p
         | Thank you for reaching out to 
         strong(style="color: #fff;") Oplyx!
         |  We’re thrilled to have received your details. Our team will review your submission and get back to you shortly.
+
       p
         | If you have any urgent questions, feel free to contact us at 
         span(style="color: #81FBE9;") connectoplyx@gmail.com
@@ -79,7 +67,7 @@ html
         | 📍 Sankhamul - Kathmandu - 44600
         br
         br
-        | © #{new Date().getFullYear()} Oplyx Tech. All rights reserved.
+        | © 2025 Oplyx Tech. All rights reserved.
         br
         br
 
