@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { baseURL } from "@/config/config";
 import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
@@ -65,7 +64,7 @@ export default function ContactPage() {
         setLoader(true);
         await axios({
           method: "POST",
-          url: `${baseURL}/enquiry/create`,
+          url: "api/enquiry/create",
           data: {
             name: formData.name,
             email: formData.email,
