@@ -4,6 +4,6 @@ const { createEnquiry } = require("../controller/enquiry.controller");
 
 const router = express.Router();
 
-router.post("/create", validateEnquiry, createEnquiry);
+router.post("/submit", validateEnquiry, createEnquiry);
 
 module.exports = router;
