@@ -1,0 +1,95 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    title New Enquiry Submitted
+    style.
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafc;
+        padding: 40px;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .logo {
+        display: block;
+        max-width: 100px;
+        margin-bottom: 20px;
+      }
+      h2 {
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .info-card {
+        background: #f1f5f9;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      .info-text {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      .info-text strong {
+        display: block;
+        font-size: 0.9rem;
+        color: #555;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        text-align: center;
+        color: #999;
+      }
+
+  body
+    .container
+      img.logo(src='https://res.cloudinary.com/dtgvvhwbu/image/upload/v1746547427/uploads/1746547423183-logo.png.png', alt='Company Logo')
+
+      h2 New Enquiry Received!
+      p A new enquiry has been submitted through the contact form. The details are as follows:
+
+      .info-card
+        img.icon(src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png", alt="Name Icon")
+        .info-text
+          strong Name
+          | #{name}
+
+      .info-card
+        img.icon(src="https://cdn-icons-png.flaticon.com/512/732/732200.png", alt="Email Icon")
+        .info-text
+          strong Email
+          | #{email}
+
+      .info-card
+        img.icon(src="https://cdn-icons-png.flaticon.com/512/597/597177.png", alt="Phone Icon")
+        .info-text
+          strong Phone
+          | #{phone}
+
+      .info-card
+        img.icon(src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png", alt="Service Icon")
+        .info-text
+          strong Course
+          | #{course}
+
+      .info-card
+        img.icon(src="https://cdn-icons-png.flaticon.com/512/2920/2920212.png", alt="Message Icon")
+        .info-text
+          strong Message
+          | #{message}
