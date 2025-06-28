@@ -88,4 +88,31 @@ async function submitCourseEnquiryService({
   return result;
 }
 
-module.exports = { createEnquiryService, submitCourseEnquiryService };
+async function getEnquiryService() {
+  try {
+    const enquiries = await Enquiry.findAll({
+      order: [["createdAt", "DESC"]],
+    });
+    return enquiries;
+  } catch (error) {
+    throw new Error(`Failed to fetch enquiries: ${error.message}`);
+  }
+}
+
+async function getCourseEnquiryService() {
+  try {
+    const courseEnquiries = await CourseEnquiry.findAll({
+      order: [["createdAt", "DESC"]],
+    });
+    return courseEnquiries;
+  } catch (error) {
+    throw new Error(`Failed to fetch course enquiries: ${error.message}`);
+  }
+}
+
+module.exports = {
+  createEnquiryService,
+  submitCourseEnquiryService,
+  getEnquiryService,
+  getCourseEnquiryService,
+};

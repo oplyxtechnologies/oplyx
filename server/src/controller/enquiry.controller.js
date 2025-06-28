@@ -1,12 +1,14 @@
 const {
   createEnquiryService,
   submitCourseEnquiryService,
+  getEnquiryService,
+  getCourseEnquiryService,
 } = require("../services/enquiry.service");
 
 exports.createEnquiry = async (req, res, next) => {
   const { name, email, phoneNumber, message, service } = req.body;
   try {
-    const result = await createEnquiryService({
+    await createEnquiryService({
       name,
       email,
       phoneNumber,
@@ -28,7 +30,7 @@ exports.createEnquiry = async (req, res, next) => {
 exports.submitCourseEnquiry = async (req, res, next) => {
   const { fullName, email, phoneNumber, course, message } = req.body;
   try {
-    const result = await submitCourseEnquiryService({
+    await submitCourseEnquiryService({
       fullName,
       email,
       phoneNumber,
@@ -45,5 +47,35 @@ exports.submitCourseEnquiry = async (req, res, next) => {
       message: error.message,
     });
     console.log(error.message);
+  }
+};
+
+exports.getAllEnquiries = async (req, res, next) => {
+  try {
+    const enquiries = await getEnquiryService();
+    res.status(200).json({
+      success: true,
+      enquiries,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+exports.getAllCourseEnquiries = async (req, res, next) => {
+  try {
+    const courseEnquiries = await getCourseEnquiryService();
+    res.status(200).json({
+      success: true,
+      courseEnquiries,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
