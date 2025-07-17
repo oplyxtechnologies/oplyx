@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME}}/oplyx-tech-server -f ./server/Dockerfile ./server
+        run: docker build -t ${{secrets.DOCKER_USERNAME}}/oplyx-tech-server -f ./server/Dockerfile ./server
 
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME}}/oplyx-tech-server:latest
+        run: docker push ${{secrets.DOCKER_USERNAME}}/oplyx-tech-server:latest
